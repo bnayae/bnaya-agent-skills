@@ -27,9 +27,12 @@ The implementation plan covers 10 mandatory phases:
 9. **Reliability** - DR strategy, failover, RTO/RPO
 10. **Hardening** - Security hardening, runbooks
 
-For detailed phase templates, see:
-- [Phase 4: Local Development](phases/local-dev.md)
-- [Phase 5: CI/CD Pipeline](phases/cicd.md)
+The following phases have dedicated standalone skills that can also be invoked directly:
+
+- **local-dev-plan** - Phase 4: Generate local development environment plans
+  - "Create a local dev setup for React + PostgreSQL"
+- **cicd-plan** - Phase 5: Generate CI/CD pipeline configurations
+  - "Create GitHub Actions workflow for my app"
 
 ## Output Contract
 
@@ -138,7 +141,7 @@ implementation_plan:
 
 ## Phase 4: Local Development
 
-See [phases/local-dev.md](phases/local-dev.md) for detailed template.
+Use the **local-dev-plan** skill for detailed planning (can be invoked directly).
 
 **Goals**: Enable full local development, minimize time-to-first-run
 
@@ -151,7 +154,7 @@ See [phases/local-dev.md](phases/local-dev.md) for detailed template.
 
 ## Phase 5: CI/CD Pipeline
 
-See [phases/cicd.md](phases/cicd.md) for detailed template.
+Use the **cicd-plan** skill for detailed planning (can be invoked directly).
 
 **Goals**: Automate build/test/deploy, enforce quality gates
 

@@ -13,12 +13,22 @@ Requires architecture brief from **architecture-refinement** skill. If not avail
 
 ## Process Overview
 
-1. Generate stack candidates using [candidate-generator](sub-skills/candidate-generator.md)
-2. Build decision matrix using [decision-matrix](sub-skills/decision-matrix.md)
-3. Evaluate costs using provider-specific evaluators in [cost-evaluators/](cost-evaluators/)
-4. Assess local dev experience using [local-dev-evaluator](sub-skills/local-dev-evaluator.md)
-5. Check Aspire fit using [aspire-evaluator](sub-skills/aspire-evaluator.md) (when applicable)
-6. Allow custom combinations via [custom-explorer](sub-skills/custom-explorer.md)
+This skill orchestrates the following standalone skills (each can also be invoked directly):
+
+1. **candidate-generator** - Generate 2-5 stack candidates based on requirements
+2. **decision-matrix** - Build weighted comparison matrix
+3. **Cost evaluators** - Estimate costs per provider:
+   - **cost-aws** - AWS infrastructure costs
+   - **cost-gcp** - GCP infrastructure costs
+   - **cost-supabase** - Supabase platform costs
+   - **cost-firebase** - Firebase platform costs
+   - **cost-vercel** - Vercel platform costs
+4. **local-dev-evaluator** - Assess local development experience
+5. **aspire-evaluator** - Check .NET Aspire fit (when applicable)
+6. **custom-explorer** - Evaluate user-proposed combinations
+
+All sub-skills are in the `stack-evaluation/` directory and can be triggered independently.
+For example: "Estimate AWS costs for EKS + Aurora" triggers **cost-aws** directly.
 
 ## Evaluation Factors
 
