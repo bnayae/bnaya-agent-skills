@@ -1,11 +1,102 @@
 ---
 name: cost-supabase
-description: Estimate Supabase costs for any project. Use when user asks about Supabase pricing, BaaS costs, or PostgreSQL-based backend costs.
+description: Estimate Supabase costs for any project using live pricing data. Use when user asks about Supabase pricing, BaaS costs, or PostgreSQL-based backend costs.
 ---
 
 # Supabase Cost Evaluator
 
-Estimate costs for Supabase-based projects.
+Estimate costs for Supabase-based projects using current pricing data.
+
+## Before Answering Supabase Cost Questions
+
+**IMPORTANT**: Always verify tool availability before providing cost estimates.
+
+### Step 1: Check Available Tools
+
+Check if the following tools are available:
+
+**Supabase CLI** (preferred):
+- `supabase` CLI for project information
+- `supabase projects list` - List projects
+- `supabase orgs list` - List organizations
+
+**Supabase Management API**:
+- REST API for project and billing info
+
+### Step 2: If Tools Are Unavailable
+
+If Supabase CLI is not accessible, help the user set it up:
+
+**Option A: Supabase CLI**
+```bash
+# Install Supabase CLI
+# macOS
+brew install supabase/tap/supabase
+
+# npm
+npm install -g supabase
+
+# Login
+supabase login
+```
+
+**Option B: Supabase Management API**
+```bash
+# Get access token from dashboard
+# https://supabase.com/dashboard/account/tokens
+
+# List projects
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.supabase.com/v1/projects"
+
+# Get project details (includes usage)
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.supabase.com/v1/projects/PROJECT_REF"
+```
+
+Ask the user which option fits their environment before proceeding.
+
+### Step 3: Fallback to Web Search
+
+If no tools are available and user cannot install them, use web search to fetch current pricing from:
+- https://supabase.com/pricing
+- https://supabase.com/docs/guides/platform/billing
+
+## How to Get Live Pricing
+
+### Using Supabase CLI
+
+```bash
+# List all projects
+supabase projects list
+
+# Get project status (includes some usage info)
+supabase status
+
+# Link to project for detailed info
+supabase link --project-ref YOUR_PROJECT_REF
+```
+
+### Using Supabase Management API
+
+```bash
+# Get organization billing
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.supabase.com/v1/organizations/ORG_ID/billing"
+
+# Get project usage
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.supabase.com/v1/projects/PROJECT_REF/usage"
+
+# Get subscription details
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.supabase.com/v1/projects/PROJECT_REF/subscription"
+```
+
+### Using Web Scrape (Fallback)
+
+Fetch current pricing from Supabase pricing page:
+- https://supabase.com/pricing
 
 ## Standalone Usage
 
@@ -14,94 +105,48 @@ Can be invoked directly for cost estimation:
 - "Estimate Supabase costs for 50k users"
 - "What's included in Supabase free tier?"
 
-## Pricing Tiers
+## Cost Estimation Process
 
-### Free Tier ($0/mo)
-| Resource | Limit |
-|----------|-------|
-| Database | 500 MB |
-| File Storage | 1 GB |
-| Bandwidth | 2 GB |
-| Monthly Active Users | 50,000 |
-| Edge Functions | 500k invocations |
-| Realtime | 200 concurrent |
-| Compute | Shared |
+1. **Identify tier** needed based on requirements
+2. **Query current pricing** using available tools
+3. **Calculate add-ons** based on expected usage
+4. **Estimate at scale** (10x baseline)
+5. **Compare** to alternatives if needed
 
-**Best for**: Development, prototypes, hobby projects
+## Pricing Structure (Query for Current Values)
 
-### Pro Tier ($25/mo)
-| Resource | Limit |
-|----------|-------|
-| Database | 8 GB |
-| File Storage | 100 GB |
-| Bandwidth | 50 GB |
-| Monthly Active Users | 100,000 |
-| Edge Functions | 2M invocations |
-| Realtime | 500 concurrent |
-| Compute | Dedicated (2 vCPU) |
-| Backups | Daily |
+### Tier Information
 
-**Best for**: Production apps, small-medium scale
+| Tier | Query Method |
+|------|-------------|
+| Free | `supabase.com/pricing` or API |
+| Pro | `supabase.com/pricing` or API |
+| Team | `supabase.com/pricing` or API |
+| Enterprise | Contact sales |
 
-### Team Tier ($599/mo)
-Everything in Pro, plus:
-- SOC2 compliance
-- SSO/SAML
-- Priority support
-- 28-day log retention
+### Usage-Based Add-ons
 
-**Best for**: Teams needing compliance
+| Resource | Query Method |
+|----------|-------------|
+| Compute | API: `/projects/{ref}/usage` |
+| Database Storage | API: `/projects/{ref}/usage` |
+| File Storage | API: `/projects/{ref}/usage` |
+| Bandwidth | API: `/projects/{ref}/usage` |
+| Edge Functions | API: `/projects/{ref}/usage` |
 
-### Enterprise (Custom)
-- Custom limits
-- SLA
-- Dedicated support
-- Custom security
+### Get Current Usage
 
-## Add-on Pricing (Pro+)
+```bash
+# Via API
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.supabase.com/v1/projects/PROJECT_REF/usage"
 
-| Add-on | Cost |
-|--------|------|
-| Compute (per vCPU) | ~$25/mo |
-| Database (per GB) | $0.125/GB |
-| Storage (per GB) | $0.021/GB |
-| Bandwidth (per GB) | $0.09/GB |
-| Point-in-time Recovery | $100/mo |
-| Custom domains | $10/mo |
-
-## Example Calculations
-
-### Small Production App
-```
-Pro tier base: $25/mo
-Database (8GB included): $0
-Storage (20GB, 19 extra): $0.40/mo
-Bandwidth (30GB included): $0
-─────────────────────────────
-Total: ~$26/mo
-```
-
-### Medium Scale App (100k MAU)
-```
-Pro tier base: $25/mo
-Extra compute (+2 vCPU): $50/mo
-Database (20GB, 12 extra): $1.50/mo
-Storage (50GB, 50 extra): $1.05/mo
-Bandwidth (100GB, 50 extra): $4.50/mo
-─────────────────────────────
-Total: ~$82/mo
-```
-
-### Large Scale App (500k MAU)
-```
-Pro tier base: $25/mo
-Extra compute (+6 vCPU): $150/mo
-Database (100GB): $12.50/mo
-Storage (200GB): $4.20/mo
-Bandwidth (500GB): $45/mo
-Point-in-time Recovery: $100/mo
-─────────────────────────────
-Total: ~$337/mo
+# Response includes:
+# - database_size_bytes
+# - storage_size_bytes
+# - bandwidth_bytes
+# - function_invocations
+# - mau (monthly active users)
 ```
 
 ## Output Contract
@@ -109,8 +154,26 @@ Total: ~$337/mo
 ```yaml
 supabase_cost_estimate:
   description: "<what's being estimated>"
+  pricing_source: "<cli|api|web>"
+  pricing_date: "<when pricing was fetched>"
 
   recommended_tier: "<free|pro|team|enterprise>"
+
+  tier_details:
+    name: "<tier name>"
+    base_price: "<$X/mo>"
+    included:
+      database_gb: <N>
+      storage_gb: <N>
+      bandwidth_gb: <N>
+      mau: <N>
+      edge_function_invocations: <N>
+
+  usage_estimate:
+    database_gb: <N>
+    storage_gb: <N>
+    bandwidth_gb: <N>
+    mau: <N>
 
   baseline_monthly:
     tier_base: "<$X>"
@@ -133,30 +196,64 @@ supabase_cost_estimate:
     - "Edge Functions (Deno)"
     - "Storage (S3-compatible)"
     - "Vector embeddings (pgvector)"
-    - "Database webhooks"
     - "Auto-generated APIs"
-
-  limitations:
-    - "<limitation 1>"
 
   optimization_tips:
     - "<tip 1>"
+    - "<tip 2>"
 ```
 
-## Supabase Advantages
+## Cost Optimization Strategies
 
-- **All-in-one**: DB + Auth + Storage + Functions + Realtime
-- **PostgreSQL**: Full SQL access, extensions, triggers
-- **Open source**: Can self-host if needed
-- **Generous free tier**: Great for development
-- **Simple pricing**: Predictable costs
-- **Built-in Auth**: No separate auth service needed
+### Monitor Usage via API
 
-## Cost Optimization Tips
+```bash
+# Set up usage monitoring
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.supabase.com/v1/projects/PROJECT_REF/usage"
 
-1. **Use free tier for dev**: Create separate projects for dev/prod
-2. **Optimize queries**: Reduce database compute needs
-3. **Use storage policies**: Prevent abuse
-4. **Cache at edge**: Reduce bandwidth with CDN
-5. **Connection pooling**: Use PgBouncer (built-in)
-6. **Self-host for scale**: Consider self-hosting at very large scale
+# Check daily stats
+# Dashboard: https://supabase.com/dashboard/project/_/reports
+```
+
+### Optimize Database
+
+```sql
+-- Check database size
+SELECT pg_size_pretty(pg_database_size(current_database()));
+
+-- Find large tables
+SELECT relname, pg_size_pretty(pg_total_relation_size(relid))
+FROM pg_catalog.pg_statio_user_tables
+ORDER BY pg_total_relation_size(relid) DESC;
+
+-- Enable connection pooling (PgBouncer)
+-- Use transaction mode for serverless
+```
+
+### Optimize Storage
+
+```bash
+# List storage buckets and sizes via API
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.supabase.com/v1/projects/PROJECT_REF/storage/buckets"
+```
+
+## Supabase vs Alternatives
+
+When comparing costs:
+- **vs Firebase**: Supabase often cheaper for SQL-heavy workloads
+- **vs AWS (RDS + Cognito + S3)**: Supabase simpler, often cheaper at small scale
+- **vs PlanetScale + Clerk**: Compare feature sets, Supabase is all-in-one
+
+## Self-Hosting Option
+
+For very large scale, consider self-hosting:
+```bash
+# Self-hosted Supabase
+git clone https://github.com/supabase/supabase
+cd supabase/docker
+docker compose up
+```
+
+Costs shift to infrastructure (compute, storage) instead of Supabase fees.

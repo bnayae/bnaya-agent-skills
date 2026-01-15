@@ -1,11 +1,123 @@
 ---
 name: cost-vercel
-description: Estimate Vercel costs for any project. Use when user asks about Vercel pricing, Next.js hosting costs, or edge deployment costs.
+description: Estimate Vercel costs for any project using live pricing data. Use when user asks about Vercel pricing, Next.js hosting costs, or edge deployment costs.
 ---
 
 # Vercel Cost Evaluator
 
-Estimate costs for Vercel-based projects.
+Estimate costs for Vercel-based projects using current pricing data.
+
+## Before Answering Vercel Cost Questions
+
+**IMPORTANT**: Always verify tool availability before providing cost estimates.
+
+### Step 1: Check Available Tools
+
+Check if the following tools are available:
+
+**Vercel CLI** (preferred):
+- `vercel` CLI for project information
+- `vercel ls` - List deployments
+- `vercel project ls` - List projects
+
+**Vercel API**:
+- REST API for project and usage info
+
+### Step 2: If Tools Are Unavailable
+
+If Vercel CLI is not accessible, help the user set them up:
+
+**Option A: Vercel CLI**
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Login
+vercel login
+
+# List projects
+vercel project ls
+
+# Get project info
+vercel inspect <deployment-url>
+```
+
+**Option B: Vercel API**
+```bash
+# Get access token from dashboard
+# https://vercel.com/account/tokens
+
+# List projects
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v9/projects"
+
+# Get project usage
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/usage"
+
+# Get team usage
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/teams/TEAM_ID/usage"
+```
+
+Ask the user which option fits their environment before proceeding.
+
+### Step 3: Fallback to Web Search
+
+If no tools are available and user cannot install them, use web search to fetch current pricing from:
+- https://vercel.com/pricing
+- https://vercel.com/docs/limits/overview
+
+## How to Get Live Pricing
+
+### Using Vercel CLI
+
+```bash
+# List all projects
+vercel project ls
+
+# Get deployment details
+vercel ls
+vercel inspect DEPLOYMENT_URL
+
+# Check current usage (requires dashboard)
+vercel open  # Opens dashboard
+```
+
+### Using Vercel API
+
+```bash
+# Get account/team usage
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/usage"
+
+# Response includes:
+# - bandwidth (bytes)
+# - serverlessFunctionExecution (gb-hours)
+# - edgeFunctionInvocations
+# - imageOptimization
+# - builds
+
+# Get specific project usage
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v9/projects/PROJECT_ID"
+
+# List team members (for seat count)
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v2/teams/TEAM_ID/members"
+```
+
+### Using Vercel Dashboard API
+
+```bash
+# Get billing information
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/billing"
+
+# Get invoices
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/billing/invoices"
+```
 
 ## Standalone Usage
 
@@ -14,98 +126,49 @@ Can be invoked directly for cost estimation:
 - "Estimate Vercel costs for a Next.js app"
 - "What's included in Vercel free tier?"
 
-## Pricing Tiers
+## Cost Estimation Process
 
-### Hobby ($0/mo)
-| Resource | Limit |
-|----------|-------|
-| Bandwidth | 100 GB |
-| Serverless Function Execution | 100 GB-hrs |
-| Edge Function Invocations | 1M |
-| Image Optimization | 1k source images |
-| Build Minutes | 6,000/mo |
-| Deployments | Unlimited |
-| Preview Deployments | Yes |
-| Team Members | 1 (personal only) |
-| Commercial Use | **No** |
+1. **Identify tier** needed (Hobby/Pro/Enterprise)
+2. **Count team members** for seat pricing
+3. **Query current pricing** using available tools
+4. **Estimate usage** (bandwidth, functions, etc.)
+5. **Calculate overages** above included limits
+6. **Factor in add-ons** (Postgres, KV, Blob)
 
-**Best for**: Personal projects, learning, non-commercial
+## Pricing Structure (Query for Current Values)
 
-### Pro ($20/user/month)
-| Resource | Included | Overage |
-|----------|----------|---------|
-| Bandwidth | 1 TB | $0.15/GB |
-| Serverless Execution | 1,000 GB-hrs | $0.18/GB-hr |
-| Edge Functions | 1M invocations | $2/1M |
-| Edge Middleware | 1M invocations | $0.65/1M |
-| Image Optimization | 5k source images | $5/1k |
-| Build Minutes | Unlimited | - |
-| Preview Deployments | Unlimited | - |
-| Password Protection | Yes | - |
-| Web Analytics | 25k events/mo | Custom |
+### Tier Information
 
-**Best for**: Professional teams, production apps
+| Tier | Query Method |
+|------|-------------|
+| Hobby | `vercel.com/pricing` |
+| Pro | API: `/v1/billing` or web |
+| Enterprise | Contact sales |
 
-### Enterprise (Custom)
-- SLA
-- SSO/SAML
-- Advanced security
-- Dedicated support
-- Custom limits
+### Usage Metrics (Query via API)
 
-## Add-on Services
+| Metric | API Endpoint |
+|--------|-------------|
+| Bandwidth | `GET /v1/usage` → bandwidth |
+| Function Execution | `GET /v1/usage` → serverlessFunctionExecution |
+| Edge Invocations | `GET /v1/usage` → edgeFunctionInvocations |
+| Image Optimization | `GET /v1/usage` → imageOptimization |
+| Build Minutes | `GET /v1/usage` → builds |
 
-| Service | Free Tier | Pro Cost |
-|---------|-----------|----------|
-| Vercel Postgres | 256 MB | From $20/mo |
-| Vercel KV (Redis) | 256 MB | From $10/mo |
-| Vercel Blob | 250 MB | $0.15/GB |
-| Vercel Edge Config | 8 KB | $0.10/read |
-| Web Analytics | - | Included in Pro |
-| Speed Insights | 10k data points | From $10/mo |
+### Get Current Usage
 
-## Example Calculations
+```bash
+# Get overall usage
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/usage"
 
-### Solo Developer (Hobby)
-```
-Hobby tier: $0
-Bandwidth (50GB): Included
-Functions (50 GB-hrs): Included
-─────────────────────────────
-Total: $0/mo (non-commercial only)
-```
+# Get usage by project
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/usage?projectId=PROJECT_ID"
 
-### Small Team (3 devs)
-```
-Pro tier (3 seats): $60/mo
-Bandwidth (500GB): Included
-Functions (500 GB-hrs): Included
-Vercel Postgres: $20/mo
-─────────────────────────────
-Total: ~$80/mo
-```
-
-### Medium Team (10 devs)
-```
-Pro tier (10 seats): $200/mo
-Bandwidth (2TB, 1TB extra): $150/mo
-Functions (2k GB-hrs, 1k extra): $180/mo
-Vercel Postgres (Pro): $60/mo
-Vercel KV: $30/mo
-─────────────────────────────
-Total: ~$620/mo
-```
-
-### Large Scale
-```
-Pro tier (25 seats): $500/mo
-Bandwidth (10TB): $1,350/mo
-Functions (10k GB-hrs): $1,620/mo
-Vercel Postgres: $200/mo
-Edge Functions (50M): $100/mo
-─────────────────────────────
-Total: ~$3,770/mo
-(Consider Enterprise tier)
+# Get usage for time period
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/usage?from=2024-01-01&to=2024-01-31"
 ```
 
 ## Output Contract
@@ -113,15 +176,29 @@ Total: ~$3,770/mo
 ```yaml
 vercel_cost_estimate:
   description: "<what's being estimated>"
+  pricing_source: "<cli|api|web>"
+  pricing_date: "<when pricing was fetched>"
 
   recommended_tier: "<hobby|pro|enterprise>"
   team_size: <N>
 
+  tier_details:
+    name: "<tier name>"
+    seat_price: "<$X/user/mo>"
+    included:
+      bandwidth_gb: <N>
+      function_gb_hours: <N>
+      edge_invocations: <N>
+      image_optimizations: <N>
+
+  usage_estimate:
+    bandwidth_gb: <N>
+    function_gb_hours: <N>
+    edge_invocations: <N>
+
   baseline_monthly:
     seats: "<$X>"
-    bandwidth_included: "<X TB>"
     bandwidth_overage: "<$X>"
-    functions_included: "<X GB-hrs>"
     functions_overage: "<$X>"
     edge_functions: "<$X>"
     storage_services: "<$X>"
@@ -140,13 +217,98 @@ vercel_cost_estimate:
     - "Edge functions"
     - "Git integration"
     - "Instant rollbacks"
-    - "Analytics (Pro)"
 
-  notes:
-    - "<important note>"
+  warnings:
+    - "<warning if applicable>"
 
   optimization_tips:
     - "<tip 1>"
+    - "<tip 2>"
+```
+
+## Cost Optimization Strategies
+
+### Monitor Usage via API
+
+```bash
+# Set up usage monitoring
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/usage"
+
+# Check usage trends
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/usage?from=$(date -d '30 days ago' +%Y-%m-%d)"
+
+# Get per-project breakdown
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v9/projects" | jq '.projects[].name'
+```
+
+### Optimize Bandwidth
+
+```bash
+# Check bandwidth by deployment
+vercel ls --all
+
+# Review large deployments
+vercel inspect DEPLOYMENT_URL
+```
+
+```javascript
+// In next.config.js - optimize images
+module.exports = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
+  },
+}
+```
+
+### Optimize Functions
+
+```javascript
+// Use Edge Runtime for simple functions (cheaper)
+export const config = {
+  runtime: 'edge',
+}
+
+// Use ISR to reduce function calls
+export async function getStaticProps() {
+  return {
+    props: { data },
+    revalidate: 60, // Regenerate every 60 seconds
+  }
+}
+```
+
+### Use Static Generation
+
+```javascript
+// Prefer static pages (no function cost)
+export async function generateStaticParams() {
+  // Pre-render pages at build time
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+```
+
+## Vercel Add-on Services
+
+Query pricing for add-ons:
+
+```bash
+# Vercel Postgres
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/storage/postgres"
+
+# Vercel KV
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/storage/kv"
+
+# Vercel Blob
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  "https://api.vercel.com/v1/storage/blob"
 ```
 
 ## Vercel Considerations
@@ -163,12 +325,10 @@ vercel_cost_estimate:
 - Function execution time affects cost
 - Hobby tier is non-commercial only
 
-## Cost Optimization Tips
+## Vercel vs Alternatives
 
-1. **Static where possible**: Static pages = no function cost
-2. **Use ISR**: Incremental Static Regeneration reduces functions
-3. **Edge functions**: Cheaper than serverless for simple logic
-4. **Optimize images**: Use next/image, it's cached
-5. **External DB**: Vercel DB is convenient but pricier than alternatives
-6. **Caching headers**: Reduce bandwidth with proper caching
-7. **Consider alternatives**: For large teams, compare total cost with AWS/GCP
+When comparing costs:
+- **vs AWS (CloudFront + Lambda)**: Use `cost-aws` - often cheaper at scale but more complex
+- **vs GCP (Cloud Run)**: Use `cost-gcp` - good middle ground
+- **vs Netlify**: Similar model, compare specific features
+- Consider total cost including team seats for large teams
