@@ -50,6 +50,7 @@
 
 ## MCP
 
+- [Aspire MCP](https://aspire.dev/get-started/configure-mcp/)
 - [Figma MCP](https://www.builder.io/blog/claude-code-figma-mcp-server)
 - [Playwright MCP](https://www.youtube.com/watch?v=xOO8Wt_i72s)
 
