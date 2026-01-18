@@ -152,6 +152,30 @@ Use the **local-dev-plan** skill for detailed planning (can be invoked directly)
 - Local secrets strategy
 - Prod parity documentation
 
+### Offline Considerations (when required)
+
+If offline requirement is `transient` or higher, include:
+
+- **Offline Storage Strategy**:
+  - Technology selection (IndexedDB, SQLite WASM, localStorage)
+  - Data model for offline access
+  - Storage limits and quota handling
+
+- **Sync Strategy**:
+  - Background sync implementation
+  - Conflict resolution approach (last-write-wins, merge, CRDT)
+  - Retry and backoff policies
+
+- **Failure Modes**:
+  - Network detection and status handling
+  - Graceful degradation patterns
+  - User feedback during offline/sync states
+
+- **Testing Offline Scenarios**:
+  - Offline mode simulation in local dev
+  - Sync conflict test cases
+  - Data integrity verification
+
 ## Phase 5: CI/CD Pipeline
 
 Use the **cicd-plan** skill for detailed planning (can be invoked directly).

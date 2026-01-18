@@ -84,6 +84,15 @@ When generating candidates, consider:
 - **Medium (6-15)**: Containers, managed K8s
 - **Large (16+)**: K8s, multi-service architectures
 
+### By Offline Requirement
+
+| Requirement | Recommended Approach |
+|-------------|---------------------|
+| **None** | Standard server-centric architecture |
+| **Transient** | Retry logic, in-memory queue, graceful degradation |
+| **Session-Durable** | IndexedDB + service worker, background sync |
+| **Strong Offline-First** | CRDT-based (Y.js, Automerge), local-first (SQLite WASM) |
+
 ## Output Contract
 
 ```yaml
@@ -118,6 +127,11 @@ candidates:
 
     local_dev_story: |
       <How a developer runs this end-to-end on a laptop>
+
+    offline_story:
+      level: "<none|transient|session_durable|strong_offline_first>"
+      technologies: ["<offline tech stack>"]
+      notes: "<implementation considerations>"
 
     strengths:
       - "<strength 1>"

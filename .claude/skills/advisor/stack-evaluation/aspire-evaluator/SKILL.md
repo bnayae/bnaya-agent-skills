@@ -1,22 +1,25 @@
 ---
-name: aspire-evaluator
 description: Evaluate whether .NET Aspire fits a project. Use when user asks about Aspire, .NET orchestration, distributed .NET apps, or local development for .NET microservices.
+name: aspire-evaluator
 ---
 
 # Aspire Fit & Enablement Evaluator
 
-Assess whether .NET Aspire is appropriate for a project and provide implementation guidance.
+Assess whether [Aspire](https://aspire.dev/get-started/configure-mcp/) is appropriate for a project and provide implementation guidance.
 
 ## Standalone Usage
 
 Can be invoked directly:
-- "Should I use .NET Aspire for my project?"
+
+- "Should I use Aspire for my project?"
 - "What is Aspire and when should I use it?"
 - "How do I set up Aspire for local development?"
 
-## What is .NET Aspire?
+## What is [Aspire](https://aspire.dev/docs/)?
 
-.NET Aspire is an opinionated stack for building distributed applications with:
+Aspire is an opinionated stack for building distributed applications with:
+
+Read more on [this](https://aspire.dev/get-started/what-is-aspire/) link.
 
 1. **AppHost** - Code-first declaration of services and dependencies
 2. **Dashboard** - Dev-time visibility (logs, traces, config)
@@ -28,7 +31,6 @@ Can be invoked directly:
 | Signal | Why It Matters |
 |--------|----------------|
 | Multi-service architecture | Aspire excels at orchestration |
-| .NET backend services | Native .NET integration |
 | Complex local orchestration | Replaces docker-compose complexity |
 | Need unified observability | Dashboard provides logs/traces/config |
 | Service discovery needed | Automatic wiring between services |
@@ -39,10 +41,8 @@ Can be invoked directly:
 | Signal | Why |
 |--------|-----|
 | Single service/monolith | Overkill, adds complexity |
-| Non-.NET stack | Limited benefit |
 | Simple deps only | docker-compose is simpler |
 | Team unfamiliar with .NET | Learning curve |
-| Polyglot microservices | Better with K8s/docker-compose |
 
 ## What Aspire Provides
 
@@ -136,10 +136,10 @@ aspire_assessment:
 
 | Score | Criteria |
 |-------|----------|
-| **strong** | 3+ .NET services, complex deps, need observability |
-| **moderate** | 2 .NET services, would benefit from dashboard |
-| **weak** | Single service, simple deps |
-| **not_applicable** | No .NET components |
+| __strong__ | 3+ .NET services, complex deps, need observability |
+| __moderate__ | 2 .NET services, would benefit from dashboard |
+| __weak__ | Single service, simple deps |
+| __not_applicable__ | No .NET components |
 
 ## Quick Start
 

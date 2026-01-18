@@ -25,6 +25,7 @@ Can be invoked directly:
 | **security** | Security features, compliance |
 | **vendor_lock_in** | Migration difficulty |
 | **local_dev_dx** | Developer experience |
+| **offline_capability** | Offline support level (when required) |
 
 ## Scoring Guide (1-5)
 
@@ -51,6 +52,13 @@ Can be invoked directly:
 - 3: Some ops required (ECS, Cloud Run)
 - 2: Significant ops (EKS, GKE managed)
 - 1: Heavy ops (self-managed K8s, bare metal)
+
+**Offline Capability Score** (when required):
+- 5: Strong offline-first (CRDT, local-first, guaranteed sync)
+- 4: Session-durable (IndexedDB, background sync)
+- 3: Transient offline (graceful degradation, retry logic)
+- 2: Limited buffering, data at risk
+- 1: No offline support
 
 ## Process
 
