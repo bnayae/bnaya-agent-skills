@@ -18,21 +18,59 @@ Requires architecture brief from **architecture-refinement** skill. If not avail
 
 This skill orchestrates the following standalone skills (each can also be invoked directly):
 
+### Core Evaluation Skills
 1. **candidate-generator** - Generate 2-5 stack candidates based on requirements
 2. **decision-matrix** - Build weighted comparison matrix
-3. **Cost evaluators** - Estimate costs per provider:
-   - **cost-aws** - AWS infrastructure costs
-   - **cost-gcp** - GCP infrastructure costs
-   - **cost-supabase** - Supabase platform costs
-   - **cost-firebase** - Firebase platform costs
-   - **cost-vercel** - Vercel platform costs
-4. **local-dev-evaluator** - Assess local development experience
-5. **offline-impact-evaluator** - Validate stack against offline requirement
-6. **aspire-evaluator** - Check .NET Aspire fit (when applicable)
-7. **custom-explorer** - Evaluate user-proposed combinations
+3. **popular-stacks** - Recommend pre-validated stack combinations for TypeScript/.NET
+
+### Cost Evaluators
+Estimate costs per provider:
+- **cost-aws** - AWS infrastructure costs
+- **cost-gcp** - GCP infrastructure costs
+- **cost-supabase** - Supabase platform costs
+- **cost-firebase** - Firebase platform costs
+- **cost-vercel** - Vercel platform costs
+- **cost-mongodb** - MongoDB Atlas costs
+- **cost-cockroachdb** - CockroachDB costs
+
+### Architecture Decision Skills
+Vendor-specific architecture guidance:
+
+**Cloud Providers:**
+- **arch-aws** - AWS service selection (EC2 vs Lambda vs ECS, Aurora vs DynamoDB, etc.)
+- **arch-gcp** - GCP service selection (Cloud Run vs GKE, Cloud SQL vs Firestore, etc.)
+
+**Databases:**
+- **arch-mongodb** - MongoDB Atlas patterns (deployment, sharding, Atlas Search)
+- **arch-cockroachdb** - CockroachDB patterns (multi-region, consistency)
+- **arch-falkordb** - FalkorDB graph database patterns
+
+**Frontend Frameworks (TypeScript):**
+- **arch-nextjs** - Next.js patterns (App Router, Server Components, rendering)
+- **arch-remix** - Remix patterns (loaders/actions, forms)
+- **arch-nuxt** - Nuxt 3 patterns (Vue SSR/SSG, Nitro)
+- **arch-sveltekit** - SvelteKit patterns (load functions, form actions)
+
+**BaaS Platforms:**
+- **arch-supabase** - Supabase patterns (Auth, RLS, Edge Functions)
+- **arch-firebase** - Firebase patterns (Firestore modeling, Cloud Functions)
+
+**Deployment Platforms:**
+- **arch-vercel** - Vercel patterns (Edge vs Serverless, caching)
+
+### Experience Evaluators
+- **local-dev-evaluator** - Assess local development experience
+- **offline-impact-evaluator** - Validate stack against offline requirement
+- **aspire-evaluator** - Check .NET Aspire fit (when applicable)
+- **custom-explorer** - Evaluate user-proposed combinations
 
 All sub-skills are in the `stack-evaluation/` directory and can be triggered independently.
-For example: "Estimate AWS costs for EKS + Aurora" triggers **cost-aws** directly.
+
+**Examples:**
+- "Estimate AWS costs for EKS + Aurora" → triggers **cost-aws**
+- "Should I use Lambda or ECS?" → triggers **arch-aws**
+- "What stack for a TypeScript SaaS?" → triggers **popular-stacks**
+- "Compare Cloud Run vs GKE" → triggers **arch-gcp**
 
 ## Evaluation Factors
 

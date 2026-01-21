@@ -14,6 +14,10 @@
 - [Contains-Studio Skills](https://github.com/contains-studio/agents/tree/main)
 - [Find Agent-Skills.md](https://agent-skills.md/)
 - [zanecole10/software-tailor-skills](https://github.com/zanecole10/software-tailor-skills)
+- Spec Driven Development
+  - agent-os
+    - [Site](https://buildermethods.com/agent-os)
+    - [GitHub](https://github.com/buildermethods/agent-os/tree/main)
 
 ### Dev Process
 
