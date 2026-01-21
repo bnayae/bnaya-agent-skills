@@ -1,6 +1,8 @@
 ---
 name: candidate-generator
 description: Generate coherent stack candidates based on requirements. Use when user needs stack options, technology recommendations, or architecture patterns for their project.
+context: fork          # Runs in isolated subagent context
+agent: Plan # Which subagent type to use (Explore, Plan, general-purpose)
 ---
 
 # Stack Candidate Generator

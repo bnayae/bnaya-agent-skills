@@ -1,6 +1,8 @@
 ---
 name: cost-firebase
 description: Estimate Firebase costs for any project using live pricing data. Use when user asks about Firebase pricing, Firestore costs, or Google BaaS costs.
+context: fork          # Runs in isolated subagent context
+agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---
 
 # Firebase Cost Evaluator

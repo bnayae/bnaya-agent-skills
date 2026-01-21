@@ -1,6 +1,8 @@
 ---
 name: cost-gcp
 description: Estimate GCP infrastructure costs for any stack using live pricing data. Use when user asks about Google Cloud pricing, cost estimation for Cloud Run, GKE, Cloud SQL, Compute Engine, or any GCP service combination.
+context: fork          # Runs in isolated subagent context
+agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---
 
 # GCP Cost & Ops Evaluator

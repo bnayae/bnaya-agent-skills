@@ -1,6 +1,8 @@
 ---
 description: Estimate AWS infrastructure costs for any stack using live pricing data. Use when user asks about AWS pricing, cost estimation for EC2, Lambda, ECS, RDS, DynamoDB, CloudFront, Aurora, S3, or any AWS service combination.
 name: cost-aws
+context: fork          # Runs in isolated subagent context
+agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---
 
 # AWS Cost & Ops Evaluator

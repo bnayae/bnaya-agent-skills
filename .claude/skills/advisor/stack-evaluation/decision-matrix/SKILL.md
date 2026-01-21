@@ -1,6 +1,8 @@
 ---
 name: decision-matrix
 description: Build a weighted decision matrix to compare options. Use when user needs to compare stacks, technologies, or any set of alternatives with multiple criteria.
+context: fork          # Runs in isolated subagent context
+agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---
 
 # Decision Matrix Builder

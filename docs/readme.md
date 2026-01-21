@@ -61,3 +61,5 @@
 # Articles
 
 - [WHAT ARE AGENT SKILLS?](https://medium.com/@tahirbalarabe2/what-are-agent-skills-c7793b206daf)
+- [How to write a good spec for AI agents](https://addyosmani.com/blog/good-spec/)
+- [A Step-by-Step Guide to Specification-First AI Development](https://galileo.ai/blog/specification-first-ai-development)
