@@ -1,6 +1,7 @@
 ---
 description: Gather requirements and produce a decision-ready architecture brief for stack selection. Use when user mentions architecture, system design, deployment strategy, choose stack, tech stack selection, cost comparison, technology options, or high-level design.
 name: architecture-refinement
+color: purple
 context: fork          # Runs in isolated subagent context
 agent: Plan # Which subagent type to use (Explore, Plan, general-purpose)
 ---

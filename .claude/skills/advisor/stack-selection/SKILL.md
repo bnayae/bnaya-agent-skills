@@ -1,6 +1,7 @@
 ---
 name: stack-selection
 description: Confirm final stack selection and document trade-offs. Use after stack-evaluation presents candidates, when user is ready to choose a stack.
+color: fuchsia
 ---
 
 # Final Stack Selection Confirmation

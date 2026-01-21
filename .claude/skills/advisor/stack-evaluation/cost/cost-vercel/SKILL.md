@@ -1,6 +1,7 @@
 ---
 name: cost-vercel
 description: Estimate Vercel costs for any project using live pricing data. Use when user asks about Vercel pricing, Next.js hosting costs, or edge deployment costs.
+color: yellow
 context: fork          # Runs in isolated subagent context
 agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---

@@ -1,6 +1,7 @@
 ---
 name: cicd-plan
 description: Generate a CI/CD pipeline plan for any stack. Use when user asks for CI/CD setup, GitHub Actions workflow, deployment pipeline, or automated testing configuration.
+color: slate
 ---
 
 # CI/CD Pipeline Plan Generator

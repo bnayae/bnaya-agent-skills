@@ -1,6 +1,7 @@
 ---
 name: cost-supabase
 description: Estimate Supabase costs for any project using live pricing data. Use when user asks about Supabase pricing, BaaS costs, or PostgreSQL-based backend costs.
+color: yellow
 context: fork          # Runs in isolated subagent context
 agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---

@@ -1,6 +1,7 @@
 ---
 name: arch-remix
 description: Evaluate Remix architecture decisions including loaders/actions, nested routes, form handling, deployment options, and comparison with Next.js. Use when user needs guidance on Remix architecture choices for TypeScript applications.
+color: cyan
 context: fork
 agent: Explore
 ---

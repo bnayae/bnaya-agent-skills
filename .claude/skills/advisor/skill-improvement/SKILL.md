@@ -1,6 +1,7 @@
 ---
 name: skill-improvement
 description: Propose PR-style improvements to advisor skills based on session feedback. Use at end of advisor flow or when friction/corrections occur.
+color: pink
 ---
 
 # Skill Improvement PR Suggestor (Learning Loop)

@@ -1,6 +1,7 @@
 ---
 name: arch-firebase
 description: Evaluate Firebase architecture decisions including Firestore data modeling, Cloud Functions patterns, authentication strategies, hosting options, and scaling considerations. Use when user needs guidance on Firebase architecture choices.
+color: amber
 context: fork
 agent: Explore
 ---

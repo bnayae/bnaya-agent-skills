@@ -1,6 +1,7 @@
 ---
 name: custom-explorer
 description: Evaluate custom stack combinations against requirements. Use when user proposes their own technology combination or asks to compare a specific stack against alternatives.
+color: indigo
 context: fork          # Runs in isolated subagent context
 agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---

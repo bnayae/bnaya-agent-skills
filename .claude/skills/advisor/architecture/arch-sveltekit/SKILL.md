@@ -1,6 +1,7 @@
 ---
 name: arch-sveltekit
 description: Evaluate SvelteKit architecture decisions including load functions, form actions, rendering strategies, adapters, and deployment options. Use when user needs guidance on SvelteKit/Svelte architecture choices for TypeScript applications.
+color: cyan
 context: fork
 agent: Explore
 ---

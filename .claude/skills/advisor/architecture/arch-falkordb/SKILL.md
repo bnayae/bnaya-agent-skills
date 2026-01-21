@@ -1,6 +1,7 @@
 ---
 name: arch-falkordb
 description: Evaluate FalkorDB graph database architecture decisions including graph modeling, Cypher queries, Redis integration, and use cases like social graphs, recommendations, and knowledge graphs. Use when user needs guidance on graph database architecture.
+color: lime
 context: fork
 agent: Explore
 ---

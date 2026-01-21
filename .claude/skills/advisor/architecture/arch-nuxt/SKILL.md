@@ -1,6 +1,7 @@
 ---
 name: arch-nuxt
 description: Evaluate Nuxt 3 architecture decisions including rendering modes (SSR, SSG, Hybrid), Nitro server, data fetching patterns, and deployment options. Use when user needs guidance on Nuxt/Vue architecture choices for TypeScript applications.
+color: teal
 context: fork
 agent: Explore
 ---

@@ -1,6 +1,7 @@
 ---
 name: arch-cockroachdb
 description: Evaluate CockroachDB architecture decisions including deployment options (Serverless vs Dedicated vs Self-hosted), multi-region patterns, consistency models, and migration from PostgreSQL. Use when user needs guidance on CockroachDB architecture choices.
+color: emerald
 context: fork
 agent: Explore
 ---

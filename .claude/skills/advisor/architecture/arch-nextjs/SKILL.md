@@ -1,6 +1,7 @@
 ---
 name: arch-nextjs
 description: Evaluate Next.js architecture decisions including App Router vs Pages Router, rendering strategies (SSR vs SSG vs ISR vs Dynamic), Server Components, data fetching patterns, and deployment options. Use when user needs guidance on Next.js architecture choices.
+color: teal
 context: fork
 agent: Explore
 ---

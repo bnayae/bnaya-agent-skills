@@ -1,6 +1,7 @@
 ---
 name: stack-evaluation
 description: Generate and evaluate stack candidates with a decision matrix. Use when after architecture-refinement completes.
+color: violet
 context: fork          # Runs in isolated subagent context
 agent: general-purpose # Which subagent type to use (Explore, Plan, general-purpose)
 ---

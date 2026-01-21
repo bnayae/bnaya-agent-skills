@@ -1,6 +1,7 @@
 ---
 name: cost-cockroachdb
 description: Estimate CockroachDB costs including Serverless (Request Units), Dedicated clusters, multi-region deployments, and storage. Use when user asks about CockroachDB pricing or cost estimation.
+color: yellow
 context: fork
 agent: Explore
 ---

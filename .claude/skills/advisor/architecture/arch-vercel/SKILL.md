@@ -1,6 +1,7 @@
 ---
 name: arch-vercel
 description: Evaluate Vercel architecture decisions including Edge vs Serverless functions, caching strategies, platform integrations (Postgres, KV, Blob), deployment patterns, and preview deployments. Use when user needs guidance on Vercel platform architecture choices.
+color: orange
 context: fork
 agent: Explore
 ---

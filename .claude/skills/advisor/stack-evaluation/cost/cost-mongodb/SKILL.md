@@ -1,6 +1,7 @@
 ---
 name: cost-mongodb
 description: Estimate MongoDB Atlas costs including cluster tiers, serverless pricing, Atlas Search, Device Sync, and data transfer. Use when user asks about MongoDB Atlas pricing or cost estimation.
+color: yellow
 context: fork
 agent: Explore
 ---

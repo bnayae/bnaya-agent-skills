@@ -1,6 +1,7 @@
 ---
 description: Evaluate whether .NET Aspire fits a project. Use when user asks about Aspire, .NET orchestration, distributed .NET apps, or local development for .NET microservices.
 name: aspire-evaluator
+color: rose
 context: fork          # Runs in isolated subagent context
 agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---

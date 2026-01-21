@@ -1,6 +1,7 @@
 ---
 name: implementation-plan
 description: Generate a deterministic execution-ready implementation plan with local dev and CI/CD. Use after stack-selection confirms the chosen stack.
+color: slate
 ---
 
 # Implementation Plan Generator

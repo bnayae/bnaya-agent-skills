@@ -1,6 +1,7 @@
 ---
 name: arch-aws
 description: Evaluate AWS architecture decisions including compute (EC2 vs Lambda vs ECS vs EKS), database (Aurora vs RDS vs DynamoDB), networking, and messaging. Use when user needs to choose between AWS services for their architecture.
+color: blue
 context: fork
 agent: Explore
 ---

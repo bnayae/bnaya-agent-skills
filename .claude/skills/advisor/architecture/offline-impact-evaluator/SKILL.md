@@ -1,6 +1,7 @@
 ---
 name: offline-impact-evaluator
 description: Validate proposed stack against offline requirements. Use after initial stack proposal to identify gaps, assess complexity, and recommend adjustments.
+color: rose
 context: fork          # Runs in isolated subagent context
 agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---

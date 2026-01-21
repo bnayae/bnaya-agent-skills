@@ -1,6 +1,7 @@
 ---
 name: local-dev-evaluator
 description: Evaluate local development experience for any stack. Use when user asks about local dev setup, docker-compose vs kubernetes, or developer experience for a technology stack.
+color: rose
 context: fork          # Runs in isolated subagent context
 agent: Explore # Which subagent type to use (Explore, Plan, general-purpose)
 ---

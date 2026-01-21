@@ -1,6 +1,7 @@
 ---
 name: local-dev-plan
 description: Generate a local development environment plan for any stack. Use when user asks for local dev setup instructions, docker-compose configuration, or how to run a stack locally.
+color: slate
 ---
 
 # Local Development Environment Plan Generator

@@ -1,6 +1,7 @@
 ---
 name: arch-gcp
 description: Evaluate GCP architecture decisions including compute (Cloud Run vs GKE vs Cloud Functions), database (Cloud SQL vs Firestore vs Spanner vs AlloyDB), and service selection. Use when user needs to choose between GCP services.
+color: sky
 context: fork
 agent: Explore
 ---

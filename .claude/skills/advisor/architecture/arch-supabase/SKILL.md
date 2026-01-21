@@ -1,6 +1,7 @@
 ---
 name: arch-supabase
 description: Evaluate Supabase architecture decisions including auth patterns, Edge Functions vs database functions, Row Level Security (RLS), Realtime subscriptions, and database design. Use when user needs guidance on Supabase architecture choices.
+color: orange
 context: fork
 agent: Explore
 ---

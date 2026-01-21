@@ -1,6 +1,7 @@
 ---
 name: popular-stacks
 description: Recommend popular, pre-validated architecture stack combinations for TypeScript and .NET projects. Use when user asks for stack recommendations, "what stack should I use", or needs a complete architecture suggestion.
+color: indigo
 context: fork
 agent: Explore
 ---

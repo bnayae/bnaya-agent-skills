@@ -1,6 +1,7 @@
 ---
 name: arch-mongodb
 description: Evaluate MongoDB Atlas architecture decisions including deployment options (Atlas dedicated vs serverless vs shared), cluster sizing, Atlas Search, Atlas Device Sync (Realm), and document modeling patterns. Use when user needs guidance on MongoDB architecture choices.
+color: green
 context: fork
 agent: Explore
 ---
