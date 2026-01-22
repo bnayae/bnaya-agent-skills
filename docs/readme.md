@@ -1,6 +1,7 @@
 # Claude Code
 
 - [Docs](https://code.claude.com/docs/en/overview)
+- [Best Practices](https://code.claude.com/docs/en/best-practices)
 
 ## Features
 
