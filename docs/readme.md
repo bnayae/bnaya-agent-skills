@@ -11,14 +11,20 @@
 
 - [Learn about claude code agent skills](https://claude.com/skills)
 - [Agent Skills Docs](https://code.claude.com/docs/en/skills)
-- [Anthtopics Skills - GitHub](https://github.com/anthropics/skills) 
-- [Contains-Studio Skills](https://github.com/contains-studio/agents/tree/main)
-- [Find Agent-Skills.md](https://agent-skills.md/)
-- [zanecole10/software-tailor-skills](https://github.com/zanecole10/software-tailor-skills)
 - Spec Driven Development
   - agent-os
     - [Site](https://buildermethods.com/agent-os)
     - [GitHub](https://github.com/buildermethods/agent-os/tree/main)
+
+### Skills libraries
+
+- [awesome-agent-skills](https://github.com/heilcheng/awesome-agent-skills?tab=readme-ov-file#skill-collections)
+- [Anthtopics Skills - GitHub](https://github.com/anthropics/skills)
+- [Antigravity Agent Skills](https://antigravity.google/docs/skills)
+- [Contains-Studio Skills](https://github.com/contains-studio/agents/tree/main)
+- [Find Agent-Skills.md](https://agent-skills.md/)
+- [zanecole10/software-tailor-skills](https://github.com/zanecole10/software-tailor-skills)
+- [Antigravity Awesome Skills: 256+ Agentic Skills](https://github.com/sickn33/antigravity-awesome-skills/)
 
 ### Dev Process
 
@@ -28,6 +34,7 @@
 - [Decision Matrix](https://agent-skills.md/skills/lyndonkl/claude/decision-matrix)
 
 ### DevOps
+
 - [DevOps Skill](https://agent-skills.md/skills/zircote/.claude/devops)
 
 ### Cloud
@@ -65,6 +72,27 @@
 
 # Articles
 
+- [Anthropic Academy](https://www.anthropic.com/learn/build-with-claude)
+- [Cloude Docs](https://platform.claude.com/docs/en/intro)
 - [WHAT ARE AGENT SKILLS?](https://medium.com/@tahirbalarabe2/what-are-agent-skills-c7793b206daf)
 - [How to write a good spec for AI agents](https://addyosmani.com/blog/good-spec/)
 - [A Step-by-Step Guide to Specification-First AI Development](https://galileo.ai/blog/specification-first-ai-development)
+
+# Rule Tips
+
+- Simplify
+
+# Prompt tips
+
+- Make it better
+
+# Setting
+
+## VS Code
+
+    "chat.mcp.gallery.enabled": true,
+    "chat.useAgentSkills": true,
+    "chat.useNestedAgentsMdFiles": true,
+    "claudeCode.useTerminal": true,
+    // Show context information for each prompt execution (like /context)
+    "claudeCode.showContextSummary": true
