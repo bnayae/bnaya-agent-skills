@@ -11,6 +11,7 @@
 
 - [Learn about claude code agent skills](https://claude.com/skills)
 - [Agent Skills Docs](https://code.claude.com/docs/en/skills)
+- [Antigravity Agent Skills](https://antigravity.google/docs/skills)
 - Spec Driven Development
   - agent-os
     - [Site](https://buildermethods.com/agent-os)
@@ -18,6 +19,7 @@
 
 ### Skills libraries
 
+- [Antigravity Agent Skills](https://antigravity.google/docs/skills)
 - [awesome-agent-skills](https://github.com/heilcheng/awesome-agent-skills?tab=readme-ov-file#skill-collections)
 - [Anthtopics Skills - GitHub](https://github.com/anthropics/skills)
 - [Antigravity Agent Skills](https://antigravity.google/docs/skills)
